@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import config
+from time import sleep
 
 CLIENT = discord.Client()
 
@@ -24,16 +25,17 @@ async def join(ctx):
         await ctx.send('I need to be in a voice channel to do this, please use the connect command.')
         return
     try:
-        # Lets play that mp3 file in the voice channel
-        vc.play(discord.FFmpegPCMAudio('airhorn.mp3'))
-
         # Lets set the volume to 1
         vc.source = discord.PCMVolumeTransformer(vc.source)
         vc.source.volume = 0.5
+        # Lets play that mp3 file in the voice channel
+        vc.play(discord.FFmpegPCMAudio('./airhorn.mp3'))
+        while vc.is_playing():
+            sleep(.1)
+        await vc.disconnect()
     except TypeError as e:
         print(f'TypeError exception:\n`{e}`')
         await ctx.send('Uh oh, Alan programmed something poorly. How surprising.')
-    await ctx.voice_client.disconnect()
 
 
 @bot.command()
