@@ -25,11 +25,11 @@ async def join(ctx):
         await ctx.send('I need to be in a voice channel to do this, please use the connect command.')
         return
     try:
+        # Lets play that mp3 file in the voice channel
+        vc.play(discord.FFmpegPCMAudio('./airhorn.mp3'))
         # Lets set the volume to 1
         vc.source = discord.PCMVolumeTransformer(vc.source)
         vc.source.volume = 0.5
-        # Lets play that mp3 file in the voice channel
-        vc.play(discord.FFmpegPCMAudio('./airhorn.mp3'))
         while vc.is_playing():
             sleep(.1)
         await vc.disconnect()
