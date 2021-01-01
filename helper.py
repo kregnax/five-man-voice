@@ -2,6 +2,7 @@ import discord
 import time
 from datetime import datetime, timedelta
 import loader
+import config
 
 voiceCMDAlias = loader.get_voice_commands_json()
 
@@ -19,7 +20,6 @@ def get_help_string():
 
 
 def play_file(cmdWords, vc):
-
     filePath = get_filepath_from_command(cmdWords)
     # Lets play that mp3 file in the voice channel
     if vc.is_playing():
@@ -31,7 +31,8 @@ def play_file(cmdWords, vc):
 
 
 def can_user_play(author, userRateLimiter):
-    if author.server_permissions.administrator:
+    id = int(author.id)
+    if id == config.ADMIN_ID:
         return True
     now = int(time.time())
     if author.id not in userRateLimiter.keys():
