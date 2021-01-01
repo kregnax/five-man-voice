@@ -31,8 +31,8 @@ def play_file(cmdWords, vc):
 
 
 def can_user_play(author, userRateLimiter):
-    # if author.server_permissions.administrator:
-    #     return True
+    if author.server_permissions.administrator:
+        return True
     now = int(time.time())
     if author.id not in userRateLimiter.keys():
         userRateLimiter[author.id] = now

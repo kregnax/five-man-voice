@@ -38,13 +38,9 @@ async def voice(ctx, *msg: str):
             await ctx.voice_client.disconnect()
             await channel.connect()
             vc = ctx.voice_client
-            # helper.play_file(cmdWords, vc, userRateLimiter)
-            # return
-        # helper.play_file(cmdWords, vc, userRateLimiter)
     else:
         await channel.connect()
         vc = ctx.voice_client
-        # helper.play_file(cmdWords, vc, userRateLimiter)
     helper.play_file(cmdWords, vc)
 
 bot.run(config.BOT_KEY)
