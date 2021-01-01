@@ -24,6 +24,8 @@ async def voice(ctx, *msg: str):
     if cmdWords[0] == 'help':
         await ctx.send(helper.get_help_string())
         return
+    if len(cmdWords) < 2:
+        return
     if not ctx.author.voice:
         await ctx.author.send('You have to be in a voice channel to try and play an audio file, genius.')
         return
