@@ -31,8 +31,10 @@ def get_voice_command_help(voice_commands):
         for alias in voice_commands[category].keys():
             commands += '\t\t{} : {}\n'.format(alias,
                                                voice_commands[category][alias])
-    commands += ("```Typing `!voice` followed by a category (e.g. `!voice genji`) will " +
-                 "play a random file from that category. To play a specific file, type " +
-                 "`!voice` followed by the alias of the file. `!voice worst` will play " +
-                 "'This game is the worst game ever designed'```")
+    # commands += ("```Typing `!voice` followed by a category (e.g. `!voice genji`) will " +
+    #              "play a random file from that category. To play a specific file, type " +
+    #              "`!voice` followed by the alias of the file. `!voice worst` will play " +
+    #              "'This game is the worst game ever designed'```")
+        commands += ("```Type `!voice` followed by the alias of the file. `!voice worst` will play " +
+                     "'This game is the worst game ever designed'```")
     return commands
