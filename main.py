@@ -11,11 +11,18 @@ bot = commands.Bot(command_prefix="!",
                    description="Plays voicelines to delight the people")
 
 userRateLimiter = {}
+chanDict = {}
 
 
 @bot.event
 async def on_ready():
     print('Logged in as {0}'.format(bot.user))
+    chanDict = helper.make_chan_dictionary(bot)
+
+
+# @bot.event
+# async def on_voice_state_update(member, before, after):
+#     print(bot.voice_clients[0].guild)
 
 
 @bot.command()
@@ -24,7 +31,7 @@ async def voice(ctx, *msg: str):
     if cmdWords[0] == 'help':
         await ctx.send(helper.get_help_string())
         return
-    if len(cmdWords) < 2:
+    if len(cmdWords) > 2:
         return
     if not ctx.author.voice:
         await ctx.author.send('You have to be in a voice channel to try and play an audio file, genius.')

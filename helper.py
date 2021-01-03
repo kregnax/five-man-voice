@@ -4,14 +4,16 @@ from datetime import datetime, timedelta
 import loader
 import config
 
-voiceCMDAlias = loader.get_voice_commands_json()
+voiceCMDAlias, flattenedAlias = loader.get_voice_commands_json()
 
 
 def get_filepath_from_command(cmdWords):
-    try:
-        voiceLine = voiceCMDAlias[cmdWords[0]]['filename'][cmdWords[1]]
-        return './.voice_lines/{0}/{1}'.format(cmdWords[0], voiceLine)
-    except:
+    fullPath = './.voice_lines/{path}'
+    if len(cmdWords) == 1:
+        return fullPath.format(path=flattenedAlias[cmdWords[0]])
+    elif len(cmdWords) == 2:
+        return fullPath.format(path=cmdWords[0]+'/'+voiceCMDAlias[cmdWords[0]][cmdWords[1]])
+    else:
         return 'ERROR'
 
 
@@ -22,7 +24,7 @@ def get_help_string():
 def play_file(cmdWords, vc):
     filePath = get_filepath_from_command(cmdWords)
     # Lets play that mp3 file in the voice channel
-    if vc.is_playing():
+    if vc.is_playing() or filePath == 'ERROR':
         return
     vc.play(discord.FFmpegPCMAudio(filePath))
     # Lets set the volume to 0.5
@@ -44,3 +46,17 @@ def can_user_play(author, userRateLimiter):
         return False
     userRateLimiter[author.id] = now
     return True
+
+
+def make_chan_dictionary(bot):
+    channels = {
+        "text": [],
+        "voice": []
+    }
+    for c in bot.get_all_channels():
+        if c.category is not None:
+            if c.category is not None and c.category.name == 'Text Channels':
+                channels['text'].append(tuple([c.id, c.name]))
+            elif c.category is not None and c.category.name == 'Voice Channels':
+                channels['voice'].append(tuple([c.id, c.name]))
+    return channels
