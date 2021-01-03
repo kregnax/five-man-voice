@@ -1,39 +1,35 @@
 {
   "doc": {
-    "filename": {
-      "donuts": "doc_come_come_donuts.mp3",
-      "wasd": "doc_wasd.mp3",
-      "raul": "doc_raul.mp3",
-      "yeah": "doc_yeah.mp3",
-      "good": "doc_looking_feeling_smelling_good.mp3",
-      "idiot": "doc_idiot.mp3",
-      "come": "doc_come.mp3",
-      "gillette": "doc_gillette.mp3",
-      "worst": "doc_worst_game.mp3",
-      "pathetic": "doc_pathetic.mp3",
-      "360": "doc_360.mp3",
-      "minute": "doc_yeahminute.mp3"
-    }
+    "donuts": "doc_come_come_donuts.mp3",
+    "wasd": "doc_wasd.mp3",
+    "raul": "doc_raul.mp3",
+    "yeah": "doc_yeah.mp3",
+    "good": "doc_looking_feeling_smelling_good.mp3",
+    "idiot": "doc_idiot.mp3",
+    "come": "doc_come.mp3",
+    "gillette": "doc_gillette.mp3",
+    "worst": "doc_worst_game.mp3",
+    "pathetic": "doc_pathetic.mp3",
+    "360": "doc_360.mp3",
+    "minute": "doc_yeahminute.mp3"
   },
   "jim": {
-    "filename": {
-      "kale": "kale.mp3",
-      "body": "body_wash.mp3"
-    }
+    "kale": "kale.mp3",
+    "body": "body_wash.mp3"
   },
   "misc": {
-    "filename": {
-      "hagay": "hagay.mp3",
-      "pop": "magnitude.mp3",
-      "h2o": "alan_garbage_water.mp3",
-      "laugh": "alan_laugh.mp3",
-      "start": "start_the_game_already.mp3",
-      "nooice": "nooice.mp3",
-      "later": "rafi_later.mp3",
-      "hands": "day9_hands.mp3",
-      "yo": "yo.mp3",
-      "another": "another.mp3",
-      "lazy": "lazy.mp3"
-    }
+    "hagay": "hagay.mp3",
+    "pop": "magnitude.mp3",
+    "h2o": "alan_garbage_water.mp3",
+    "laugh": "alan_laugh.mp3",
+    "start": "start_the_game_already.mp3",
+    "nooice": "nooice.mp3",
+    "later": "rafi_later.mp3",
+    "hands": "day9_hands.mp3",
+    "yo": "yo.mp3",
+    "another": "another.mp3",
+    "lazy": "lazy.mp3",
+    "imperius": "imperius.mp3",
+    "winky": "dva_winky_face.mp3"
   }
 }
