@@ -35,6 +35,6 @@ def get_voice_command_help(voice_commands):
     #              "play a random file from that category. To play a specific file, type " +
     #              "`!voice` followed by the alias of the file. `!voice worst` will play " +
     #              "'This game is the worst game ever designed'```")
-        commands += ("```Type `!voice` followed by the alias of the file. `!voice worst` will play " +
-                     "'This game is the worst game ever designed'```")
+    commands += ("```Type `!voice` followed by the alias of the file. `!voice worst` will play " +
+                 "'This game is the worst game ever designed'```")
     return commands
