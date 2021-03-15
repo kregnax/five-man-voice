@@ -7,7 +7,7 @@ import helper
 
 CLIENT = discord.Client()
 
-bot = commands.Bot(command_prefix="!",
+bot = commands.Bot(command_prefix="!!",
                    description="Plays voicelines to delight the people")
 
 userRateLimiter = {}
@@ -36,7 +36,10 @@ async def voice(ctx, *msg: str):
     if not ctx.author.voice:
         await ctx.author.send('You have to be in a voice channel to try and play an audio file, genius.')
         return
-    if not helper.can_user_play(ctx.author, userRateLimiter):
+    canPlay, timeLeft = helper.can_user_play(
+        ctx.author, userRateLimiter, cmdWords)
+    if not canPlay:
+        await ctx.author.send('Get rate-limited, idiot. Wait {} seconds.'.format(timeLeft))
         return
     channel = ctx.author.voice.channel
     vc = ctx.voice_client  # We use it more than once, so make it an easy variable

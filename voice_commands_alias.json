@@ -34,5 +34,8 @@
     "spice": "spice.mp3",
     "bite": "bite.mp3",
     "ten": "ten.mp3"
+  },
+  "special": {
+    "garbagewater": "garbagewater.mp3"
   }
 }
