@@ -32,20 +32,30 @@ def play_file(cmdWords, vc):
     vc.source.volume = 0.5
 
 
-def can_user_play(author, userRateLimiter):
+def can_user_play(author, userRateLimiter, cmdWords):
+    now = int(time.time())
+    if len(cmdWords) == 1 and cmdWords[0] == 'garbagewater':
+        if 'garbagewater' not in userRateLimiter.keys():
+            userRateLimiter['garbagewater'] = now
+            return True, 0
+        lastCmdTime = userRateLimiter['garbagewater']
+        delta = now - lastCmdTime
+        if delta < 120:
+            return False, 120-delta
+        userRateLimiter['garbagewater'] = now
+        return True, 0
     id = int(author.id)
     if id == config.ADMIN_ID:
-        return True
-    now = int(time.time())
+        return True, 0
     if author.id not in userRateLimiter.keys():
         userRateLimiter[author.id] = now
-        return True
+        return True, 0
     lastCmdTime = userRateLimiter[author.id]
     delta = now - lastCmdTime
     if delta < 15:
-        return False
+        return False, 15-delta
     userRateLimiter[author.id] = now
-    return True
+    return True, 0
 
 
 def make_chan_dictionary(bot):
