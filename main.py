@@ -52,4 +52,9 @@ async def voice(ctx, *msg: str):
         vc = ctx.voice_client
     helper.play_file(cmdWords, vc)
 
+
+@bot.command()
+async def request(ctx):
+    await ctx.author.send('lol no')
+
 bot.run(config.BOT_KEY)
