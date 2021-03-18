@@ -7,7 +7,7 @@ import helper
 
 CLIENT = discord.Client()
 
-bot = commands.Bot(command_prefix="%",
+bot = commands.Bot(command_prefix="!",
                    description="Plays voicelines to delight the people")
 
 userRateLimiter = {}
