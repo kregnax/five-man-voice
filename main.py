@@ -3,7 +3,6 @@ from discord.ext import commands
 import config
 from time import sleep
 import loader
-import helper
 
 CLIENT = discord.Client()
 
@@ -17,26 +16,21 @@ chanDict = {}
 @bot.event
 async def on_ready():
     print('Logged in as {0}'.format(bot.user))
-    chanDict = helper.make_chan_dictionary(bot)
-
-
-# @bot.event
-# async def on_voice_state_update(member, before, after):
-#     print(bot.voice_clients[0].guild)
+    chanDict = loader.make_chan_dictionary(bot)
 
 
 @bot.command()
 async def voice(ctx, *msg: str):
     cmdWords = msg[0:2]
     if cmdWords[0] == 'help':
-        await ctx.send(helper.get_help_string())
+        await ctx.send(loader.get_help_string())
         return
     if len(cmdWords) > 2:
         return
     if not ctx.author.voice:
         await ctx.author.send('You have to be in a voice channel to try and play an audio file, genius.')
         return
-    canPlay, timeLeft = helper.can_user_play(
+    canPlay, timeLeft = loader.can_user_play(
         ctx.author, userRateLimiter, cmdWords)
     if not canPlay:
         await ctx.author.send('Get rate-limited, idiot. Wait {} seconds.'.format(timeLeft))
@@ -53,11 +47,25 @@ async def voice(ctx, *msg: str):
     else:
         await channel.connect()
         vc = ctx.voice_client
-    helper.play_file(cmdWords, vc)
+    loader.play_file(cmdWords, vc)
 
 
 @bot.command()
 async def request(ctx):
     await ctx.author.send('lol no')
+
+
+@bot.command()
+async def reloadlines(ctx):
+    if id == config.ADMIN_ID:
+        nested, flattened = loader.get_voice_commands()
+        loader.setNewLookups(nested, flattened)
+
+
+@bot.command()
+async def addline(ctx, *msg: str):
+    if ctx.author.id == config.ADMIN_ID:
+        loader.add_to_db(msg)
+
 
 bot.run(config.BOT_KEY)
