@@ -65,6 +65,7 @@ def add_to_db(msg):
     cmd = "INSERT INTO alias (category, command, file) VALUES ('{}','{}','{}')".format(
         msg[0], msg[1], msg[2])
     cur.execute(cmd)
+    con.commit()
     nested, flattened = get_voice_commands()
     setNewLookups(nested, flattened)
 
